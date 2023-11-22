@@ -1,0 +1,13 @@
+
+local  语言包  中文语言包 zh-CN
+
+css 插件样式
+
+js  插件行为
+
+
+        导入时间控件步骤：
+                ① 在jquery内导入 时间控件的包
+                ② 在页面上加载插件  css / js / local
+                ③ 直接调用datetimepicker方法引入控件
+                ④ 在相关的地方直接调用即可

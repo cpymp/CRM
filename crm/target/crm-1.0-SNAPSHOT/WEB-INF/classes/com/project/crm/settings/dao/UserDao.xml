@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.project.crm.settings.dao.UserDao">
+	<select id="getAll" resultType="com.project.crm.settings.domain.User">
+        select  * from tbl_user;
+    </select>
+
+<!--    在配置文件中已经起好了别名，所以返回类型直接使用类名即可-->
+    <select id="login" resultType="User">
+        select *
+        from tbl_user where loginAct = #{loginAccount} and loginPwd = #{loginPassword};
+
+    </select>
+
+    <select id="getUserList" resultType="User">
+
+        select * from tbl_user;
+
+    </select>
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
