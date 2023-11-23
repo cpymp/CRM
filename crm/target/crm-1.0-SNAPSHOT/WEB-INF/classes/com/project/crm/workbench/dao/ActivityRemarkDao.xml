@@ -5,6 +5,29 @@
 
 <mapper namespace="com.project.crm.workbench.dao.ActivityRemarkDao">
 
+    <delete id="deleteByDeleteId"  >
+
+    DELETE
+        FROM tbl_activity_remark
+        where activityId  in
+
+        <foreach collection="array" item="activityId" open="(" close=")" separator=",">
+            #{activityId}
+        </foreach>
+
+
+    </delete>
+    <select id="getCountByDeleteId" resultType="int">
+
+    select count(*) FROM tbl_activity_remark
+    where activityId  in
+        
+    <foreach collection="array" item="activityId" open="(" close=")" separator=",">
+        #{activityId}
+    </foreach>
+
+
+    </select>
 	
 	
 </mapper>

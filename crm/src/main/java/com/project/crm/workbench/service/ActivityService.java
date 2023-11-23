@@ -20,4 +20,6 @@ public interface ActivityService {
     boolean save(Activity activity);
 
     PagenationVO<Activity> pageList(Map<String, Object> map);
+
+    boolean delete(String[] deleteId);
 }

@@ -173,6 +173,69 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			$("#selectAll").prop("checked",$("input[name=ordinary-select]").length==$("input[name=ordinary-select]:checked").length);
 		})
 
+		$("#deleteButton").click(function (){
+			var $ordinarySelect = $("input[name=ordinary-select]:checked");
+			if ($ordinarySelect.length==0){
+				alert("请选择需要删除的记录。")
+			}else {
+
+				/*
+					通过选择打钩的记录来删除，但是这些对象都被封装成了一个变量(jquery对象)，所以需要
+					将这个变量拆分成我们需要的信息
+
+					如果只勾选了一条记录 只需要使用 $ordinarySelect.var()的形式即可取出id
+
+					但是有多条记录的话，就需要变量该dom对象，取出其value值
+
+				 */
+				var deleteId = "";
+				for (var i = 0 ; i <$ordinarySelect.length;i++){
+					// $ordinarySelect[i].value
+					// id = $ordinarySelect[i].value; 这种方式可能比较low
+					deleteId += $($ordinarySelect[i]).val();
+					//使用+=将获取的地址拼接起来
+
+					/*
+						如果不是最后一个元素，则在元素后面加上一个&符号
+					 */
+					if (i != $ordinarySelect.length -1){
+						deleteId += "&";
+					}
+				}
+
+				alert(deleteId);
+
+				$.ajax({
+					url:"workbench/activity/delete.do",
+					data:{deleteId},
+					type:"post",
+					dataType:"json",
+					success:function (data){
+
+						/*
+							删除成功后，该返回什么？
+							{"success",false/true} 即可
+						 */
+						if (data.success){
+
+							pageList(1,5); //pageList 的六个入口之一
+
+						}else {
+							alert("未知错误")
+						}
+
+
+					},error(){
+
+					}
+
+				});
+
+
+			}
+
+		})
+
 	});
 	/*  pageList方法  ：自动发出一个ajax请求到后台，从后台取得最新的市场的活动信息列表数据
 	    通过响应回来的数据，局部刷新市场活动信息列表
@@ -188,6 +251,9 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	 */
 	//pageNo 和pageSize是得发送到后台的条件
 	function pageList(pageNo,pageSize){
+
+		//将全选的复选框 取消掉
+		$("#selectAll").prop("checked",false);
 		//查询前，将隐藏域中的条件取出重新赋值给查询条件
 		$("#serch-name").val($.trim($("#hidden-name").val()));
 		$("#serch-owner").val($.trim($("#hidden-owner").val()));
@@ -471,8 +537,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
  						data-toggle="modal" data-target="#editActivityModal"
 							--%>
 				  <button type="button" class="btn btn-primary" id="addButton"><span class="glyphicon glyphicon-plus"></span> 创建</button>
+
 				  <button type="button" class="btn btn-default" id="editButton" ><span class="glyphicon glyphicon-pencil"></span> 修改</button>
-				  <button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
+
+				  <button type="button" id="deleteButton" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
 				</div>
 				
 			</div>

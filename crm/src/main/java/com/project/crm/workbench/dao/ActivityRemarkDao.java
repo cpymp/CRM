@@ -11,4 +11,7 @@ package com.project.crm.workbench.dao;
  */
 public interface ActivityRemarkDao {
 
+    int getCountByDeleteId(String[] deleteId);
+
+    int deleteByDeleteId(String[] deleteId);
 }

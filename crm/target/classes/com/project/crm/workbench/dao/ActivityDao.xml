@@ -4,6 +4,22 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.crm.workbench.dao.ActivityDao">
+
+    <delete id="delete">
+
+        delete
+        FROM
+        tbl_activity
+        where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+
+            #{id}
+
+        </foreach>
+
+    </delete>
+
+
         <select id="getTotalByCondition" resultType="int">
         SELECT COUNT(*) FROM
              tbl_activity ac

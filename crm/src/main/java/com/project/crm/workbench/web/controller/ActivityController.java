@@ -11,14 +11,13 @@ import com.project.crm.vo.PagenationVO;
 import com.project.crm.workbench.domain.Activity;
 import com.project.crm.workbench.service.ActivityService;
 import com.project.crm.workbench.service.impl.ActivityServiceImpl;
-import org.apache.ibatis.session.SqlSessionFactory;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.sound.midi.Soundbank;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -45,7 +44,30 @@ public class ActivityController extends HttpServlet {
             save(request,response);
         }else if ("/workbench/activity/pageList.do".equals(path)){
             pageList(request,response);
+        }else if ("/workbench/activity/delete.do".equals(path)){
+            delete(request,response);
         }
+    }
+
+    private void delete(HttpServletRequest request, HttpServletResponse response) {
+        System.out.println("------------------------------------进入删除市场活动控制器-------------------------------------------");
+
+//        String deleteIds = request.getParameter("deleteId"); //根据 键值对的方式获取值？？
+        String[] receiptDeleteIds = request.getParameterValues("deleteId");
+        String deleteId = receiptDeleteIds[0];
+        String[] deleteIds = deleteId.split("&");
+        for (int i = 0; i < deleteIds.length; i++) {
+
+            System.out.println(deleteIds[i]);
+
+        }
+        ActivityService activityService = (ActivityService) ServiceFactory.getService(new ActivityServiceImpl());
+
+        boolean isDeleteFlag = activityService.delete(deleteIds );
+
+        PrintJson.printJsonFlag(response,isDeleteFlag);
+//        List list = deleteIds.split();
+
     }
 
 

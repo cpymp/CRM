@@ -3,8 +3,10 @@ package com.project.crm.workbench.service.impl;
 import com.project.crm.utils.SqlSessionUtil;
 import com.project.crm.vo.PagenationVO;
 import com.project.crm.workbench.dao.ActivityDao;
+import com.project.crm.workbench.dao.ActivityRemarkDao;
 import com.project.crm.workbench.domain.Activity;
 import com.project.crm.workbench.service.ActivityService;
+import org.apache.ibatis.session.SqlSessionFactory;
 
 import java.util.List;
 import java.util.Map;
@@ -20,6 +22,34 @@ import java.util.Map;
  */
 public class ActivityServiceImpl implements ActivityService {
     private ActivityDao activityDao = SqlSessionUtil.getSqlSession().getMapper(ActivityDao.class);
+    private ActivityRemarkDao activityRemarkDao = SqlSessionUtil.getSqlSession().getMapper(ActivityRemarkDao.class);
+
+    @Override
+    public boolean delete(String[] deleteId) {
+        boolean isDeleteFlag = true;
+        /*
+        因为市场活动表还关联了一张备注表,所以在删除市场活动表时还需要查询备注表并加以删除！
+
+        由此开始引入ActivityRemarkSqlSession
+         */
+
+        //查询出需要删除的备注的数量 注：任何添加、删除、修改的活动如果成功会有一条受到影响的条数
+        int remarkRequestDeleteCount = activityRemarkDao.getCountByDeleteId(deleteId);
+        //删除备注，返回受到影响的记录条数 既：实际删除的数量
+        int remarkActualDeleteCount = activityRemarkDao.deleteByDeleteId(deleteId);
+        //删除市场活动表
+        if (remarkRequestDeleteCount != remarkActualDeleteCount){
+            return false;
+        }
+
+        int  activityDeleteCount  = activityDao.delete(deleteId);
+        //受影响的条数应该和传入的数组的长度比较，如果长度一样则删除成功，不一样则删除失败
+
+        if (activityDeleteCount != deleteId.length){
+            return false;
+        }
+        return isDeleteFlag;
+    }
 
     @Override
     public boolean save(Activity activity) {
