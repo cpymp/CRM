@@ -5,6 +5,22 @@
 
 <mapper namespace="com.project.crm.workbench.dao.ActivityRemarkDao">
 
+
+    <update id="updateRemark" >
+    update        tbl_activity_remark
+    set
+
+        noteContent = #{noteContent},
+        editTime = #{editTime},
+        editBy = #{editBy},
+        editFlag = #{editFlag}
+
+    WHERE id = #{id};
+
+
+
+    </update>
+
     <delete id="deleteByDeleteId"  >
 
     DELETE
@@ -28,7 +44,40 @@
 
 
     </select>
-	
+
+    <select id="getRemarkListByActivityId" resultType="ActivityRemark">
+
+        select * from tbl_activity_remark where activityId = #{activityId} ORDER BY createTime DESC
+
+    </select>
+    <delete id="deleteById">
+
+        DELETE
+        FROM tbl_activity_remark
+        WHERE id = #{deleteId};
+
+    </delete>
+
+    <insert id="saveRemark">
+    insert  into tbl_activity_remark(
+        id,
+        noteContent,
+        createTime,
+        createBy,
+        editFlag,
+        activityId
+    ) values (
+         #{id},
+         #{noteContent},
+         #{createTime},
+         #{createBy},
+         #{editFlag},
+         #{activityId}
+                 )
+
+
+
+    </insert>
 	
 </mapper>
 

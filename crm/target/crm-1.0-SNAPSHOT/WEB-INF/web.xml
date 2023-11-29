@@ -23,8 +23,13 @@
   <filter-mapping>
     <filter-name>EncodingFilter</filter-name>
     <url-pattern>*.do</url-pattern>
+    <url-pattern>*.jsp</url-pattern>
   </filter-mapping>
 
+<!--  一般情况下，监听器配置在过滤器之后-->
+  <listener>
+    <listener-class>com.project.crm.web.filter.listener.SystemInitialListener</listener-class>
+  </listener>
 <!--   登录拦截过滤器  -->
   <filter>
     <filter-name>LoginFilter</filter-name>
@@ -61,6 +66,51 @@
     <url-pattern>/workbench/activity/save.do</url-pattern>
     <url-pattern>/workbench/activity/pageList.do</url-pattern>
     <url-pattern>/workbench/activity/delete.do</url-pattern>
+    <url-pattern>/workbench/activity/getUserListAndActivity.do</url-pattern>
+    <url-pattern>/workbench/activity/update.do</url-pattern>
+    <url-pattern>/workbench/activity/detail.do</url-pattern>
+    <url-pattern>/workbench/activity/getRemarkListByActivityId.do</url-pattern>
+    <url-pattern>/workbench/activity/deleteRemarkById.do</url-pattern>
+    <url-pattern>/workbench/activity/saveRemark.do</url-pattern>
+    <url-pattern>/workbench/activity/updateRemark.do</url-pattern>
+  </servlet-mapping>
+
+
+  <!--   线索控制器-->
+  <servlet>
+    <servlet-name>ClueController</servlet-name>
+    <servlet-class>com.project.crm.workbench.web.controller.ClueController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ClueController</servlet-name>
+    <url-pattern>/workbench/clue/getUList.do</url-pattern>
+    <url-pattern>/workbench/clue/save.do</url-pattern>
+    <url-pattern>/workbench/clue/pageList.do</url-pattern>
+    <url-pattern>/workbench/clue/xxx.do</url-pattern>
+  </servlet-mapping>
+
+
+
+
+  <!--   客户控制器-->
+  <servlet>
+    <servlet-name>CustomerController</servlet-name>
+    <servlet-class>com.project.crm.workbench.web.controller.CustomerController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CustomerController</servlet-name>
+    <url-pattern>/workbench/customer/pageList.do</url-pattern>
+    <url-pattern>/workbench/customer/getUserList.do</url-pattern>
+    <url-pattern>/workbench/customer/save.do</url-pattern>
+    <url-pattern>/workbench/customer/getUserListAndCutomerInfo.do</url-pattern>
+    <url-pattern>/workbench/customer/update.do</url-pattern>
+    <url-pattern>/workbench/customer/delete.do</url-pattern>
+    <url-pattern>/workbench/customer/detail.do</url-pattern>
+    <url-pattern>/workbench/customer/getRemarkListByCustomerId.do</url-pattern>
+    <url-pattern>/workbench/customer/saveRemark.do</url-pattern>
+    <url-pattern>/workbench/customer/updateRemark.do</url-pattern>
+    <url-pattern>/workbench/customer/deleteRemarkById.do</url-pattern>
+    <url-pattern>/workbench/customer/xxx.do</url-pattern>
   </servlet-mapping>
 
 </web-app>

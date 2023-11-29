@@ -20,6 +20,12 @@
         select * from tbl_user;
 
     </select>
+
+    <select id="getUserNameById" resultType="String">
+
+        select name  from tbl_user where id = #{owner}
+
+    </select>
 	
 	
 </mapper>
