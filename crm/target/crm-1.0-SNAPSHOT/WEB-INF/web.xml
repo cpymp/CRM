@@ -86,6 +86,10 @@
     <url-pattern>/workbench/clue/getUList.do</url-pattern>
     <url-pattern>/workbench/clue/save.do</url-pattern>
     <url-pattern>/workbench/clue/pageList.do</url-pattern>
+    <url-pattern>/workbench/clue/getUserListAndClue.do</url-pattern>
+    <url-pattern>/workbench/clue/update.do</url-pattern>
+    <url-pattern>/workbench/clue/delete.do</url-pattern>
+    <url-pattern>/workbench/clue/detail.do</url-pattern>
     <url-pattern>/workbench/clue/xxx.do</url-pattern>
   </servlet-mapping>
 

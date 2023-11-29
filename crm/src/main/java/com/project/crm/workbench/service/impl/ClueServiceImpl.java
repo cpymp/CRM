@@ -1,5 +1,7 @@
 package com.project.crm.workbench.service.impl;
 
+import com.project.crm.settings.dao.UserDao;
+import com.project.crm.settings.domain.User;
 import com.project.crm.utils.SqlSessionUtil;
 import com.project.crm.workbench.dao.ClueDao;
 import com.project.crm.workbench.domain.Clue;
@@ -21,6 +23,7 @@ import java.util.Map;
  */
 public class ClueServiceImpl implements ClueService {
     ClueDao clueDao = SqlSessionUtil.getSqlSession().getMapper(ClueDao.class);
+    UserDao userDao = SqlSessionUtil.getSqlSession().getMapper(UserDao.class);
 
     @Override
     public boolean save(Clue clue) {
@@ -34,6 +37,48 @@ public class ClueServiceImpl implements ClueService {
     }
 
     @Override
+    public Clue getClueById(String id) {
+
+        Clue clue = clueDao.getClueByIdForDetail(id);
+
+        return clue;
+
+
+
+    }
+
+    @Override
+    public boolean delete(String[] deleteIds) {
+        boolean isDelete = false;
+        int count = clueDao.delete(deleteIds);
+        if (count == deleteIds.length){
+            System.out.println("删除成功！！");
+            isDelete = true;
+        }
+        return isDelete;
+    }
+
+    @Override
+    public boolean update(Clue clue) {
+        boolean isUpdate = false;
+        int count = clueDao.update(clue);
+        if (count > 0){
+            isUpdate = true;
+        }
+        return isUpdate;
+    }
+
+    @Override
+    public  Map<String ,Object> getUserListAndClue(String id) {
+        Clue clue = clueDao.getClueById(id);
+        List<User> userList = userDao.getUserList();
+        Map<String ,Object> map = new HashMap<String, Object>();
+        map.put("clue",clue);
+        map.put("userList",userList);
+        return map;
+    }
+
+    @Override
     public Map<String, Object> pageList(Map<String, Object> map) {
 
 
@@ -41,7 +86,7 @@ public class ClueServiceImpl implements ClueService {
         int total = clueDao.getTotalByCondition(map);
         List<Clue> list = clueDao.getClueByCOndition(map);
 
-       Map<String,Object> rMap =  new HashMap<String,Object>;
+       Map<String,Object> rMap =  new HashMap<String,Object>();
         rMap.put("total",total);
         rMap.put("clueList",list);
 

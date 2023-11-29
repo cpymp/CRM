@@ -46,10 +46,96 @@ public class ClueController extends HttpServlet {
             save(request,response);
         } else if ("/workbench/clue/pageList.do".equals(path)) {
             pageList(request,response);
-        } else if ("/workbench/clue/xxx.do".equals(path)) {
+        } else if ("/workbench/clue/getUserListAndClue.do".equals(path)) {
+            getUserListAndClue(request,response);
+        } else if ("/workbench/clue/update.do".equals(path)) {
+            update(request,response);
+        }else if ("/workbench/clue/delete.do".equals(path)) {
+            delete(request,response);
+        }else if ("/workbench/clue/detail.do".equals(path)) {
+            detail(request,response);
+        }else if ("/workbench/clue/xxx.do".equals(path)) {
 //            xxx(request,response);
         }
 
+    }
+
+    private void detail(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        System.out.println("进入详细信息控制器");
+        String id = request.getParameter("id");
+        System.out.println(id);
+        ClueService clueService = (ClueService) ServiceFactory.getService(new ClueServiceImpl());
+        Clue clue = clueService.getClueById(id);
+        request.setAttribute("clue",clue);
+        request.getRequestDispatcher("/workbench/clue/detail.jsp").forward(request,response);
+
+    }
+
+    private void delete(HttpServletRequest request, HttpServletResponse response) {
+        String deleteId = request.getParameter("id");
+
+        String[] deleteIds = deleteId.split("&");
+
+        ClueService clueService = (ClueService) ServiceFactory.getService(new ClueServiceImpl());
+
+        boolean isDelete = clueService.delete(deleteIds);
+        PrintJson.printJsonFlag(response,isDelete);
+
+
+    }
+
+    private void update(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        String fullname = request.getParameter("fullname");
+        String appellation = request.getParameter("appellation");
+        String company = request.getParameter("company");
+        String job = request.getParameter("job");
+        String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
+        String website = request.getParameter("website");
+        String mphone = request.getParameter("mphone");
+        String state = request.getParameter("state");
+        String source = request.getParameter("source");
+        String description = request.getParameter("description");
+        String contactSummary = request.getParameter("contactSummary");
+        String nextContactTime = request.getParameter("nextContactTime");
+        String address = request.getParameter("address");
+        String editTime = DateTimeUtil.getSysTime();
+        String editBy = ((User)request.getSession().getAttribute("user")).getName();
+
+        Clue clue = new Clue();
+        clue.setId(id);
+        clue.setFullname(fullname);
+        clue.setAppellation(appellation);
+        clue.setCompany(company);
+        clue.setJob(job);
+        clue.setEmail(email);
+        clue.setPhone(phone);
+        clue.setWebsite(website);
+        clue.setMphone(mphone);
+        clue.setState(state);
+        clue.setSource(source);
+        clue.setDescription(description);
+        clue.setContactSummary(contactSummary);
+        clue.setNextContactTime(nextContactTime);
+        clue.setAddress(address);
+        clue.setEditTime(editTime);
+        clue.setEditBy(editBy);
+
+        ClueService clueService = (ClueService) ServiceFactory.getService(new ClueServiceImpl());
+        boolean isUpdate = clueService.update(clue);
+        PrintJson.printJsonFlag(response,isUpdate);
+    }
+
+    private void getUserListAndClue(HttpServletRequest request, HttpServletResponse response) {
+        String id = request.getParameter("id");
+        ClueService clueService = (ClueService) ServiceFactory.getService(new ClueServiceImpl());
+        Map<String ,Object> map =  clueService.getUserListAndClue(id);
+
+        map.put("success",true);
+
+
+        PrintJson.printJsonObj(response,map);
     }
 
     private void pageList(HttpServletRequest request, HttpServletResponse response) {
@@ -65,7 +151,6 @@ public class ClueController extends HttpServlet {
         String clueState  = request.getParameter("clueState");
         ClueService clueService = (ClueService) ServiceFactory.getService(new ClueServiceImpl());
         Map<String ,Object> map = new HashMap<String, Object>();
-
         int pageNum = Integer.parseInt(pageNumStr);
         int pageSize = Integer.parseInt(pageSizeStr);
         int skipPage = (pageNum -1 ) * pageSize;
@@ -78,10 +163,12 @@ public class ClueController extends HttpServlet {
         map.put("mphone",mphone);
         map.put("source",source);
         map.put("clueState",clueState);
-        map.put("skipPage",skipPageStr);
+        map.put("skipPage",skipPage);
         map.put("pageNum",pageNumStr);
+        map.put("pageSize",pageSize);
 
         Map<String,Object> rMap = clueService.pageList(map);
+        rMap.put("success",true);
         PrintJson.printJsonObj(response,rMap);
 
     }

@@ -87,10 +87,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	</div>
 
 	<div id="title" class="page-header" style="position: relative; left: 20px;">
-		<h4>转换线索 <small>李四先生-动力节点</small></h4>
+		<h4>转换线索 <small>李四先生-啊哈哈</small></h4>
 	</div>
 	<div id="create-customer" style="position: relative; left: 40px; height: 35px;">
-		新建客户：动力节点
+		新建客户：啊哈哈
 	</div>
 	<div id="create-contact" style="position: relative; left: 40px; height: 35px;">
 		新建联系人：李四先生
@@ -108,7 +108,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		  </div>
 		  <div class="form-group" style="width: 400px;position: relative; left: 20px;">
 		    <label for="tradeName">交易名称</label>
-		    <input type="text" class="form-control" id="tradeName" value="动力节点-">
+		    <input type="text" class="form-control" id="tradeName" value="啊哈哈-">
 		  </div>
 		  <div class="form-group" style="width: 400px;position: relative; left: 20px;">
 		    <label for="expectedClosingDate">预计成交日期</label>

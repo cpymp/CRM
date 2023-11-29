@@ -257,7 +257,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<div class="form-group">
 							<label for="edit-customerName" class="col-sm-2 control-label">客户名称</label>
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control" id="edit-customerName" placeholder="支持自动补全，输入客户不存在则新建" value="动力节点">
+								<input type="text" class="form-control" id="edit-customerName" placeholder="支持自动补全，输入客户不存在则新建" value="哈哈啊">
 							</div>
 						</div>
 						
@@ -407,7 +407,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 						<tr>
 							<td><input type="checkbox" /></td>
 							<td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/contacts/detail.jsp';">李四</a></td>
-							<td>动力节点</td>
+							<td>哈哈啊</td>
 							<td>zhangsan</td>
 							<td>广告</td>
 							<td>2000-10-10</td>
@@ -415,7 +415,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                         <tr class="active">
                             <td><input type="checkbox" /></td>
                             <td><a style="text-decoration: none; cursor: pointer;" onclick="window.location.href='workbench/contacts/detail.jsp';">李四</a></td>
-                            <td>动力节点</td>
+                            <td>哈哈啊</td>
                             <td>zhangsan</td>
                             <td>广告</td>
                             <td>2000-10-10</td>

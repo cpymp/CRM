@@ -47,8 +47,170 @@
 
 
     </insert>
-	
-  	
+	<select id="getTotalByCondition" resultType="int">
+
+        SELECT  COUNT(*) FROM
+        tbl_clue c
+        JOIN  tbl_user u
+        ON c.owner = u.id
+        <where>
+
+        <if test="fullname != '' and fullname != null">
+
+            c.fullname like '%' #{fullname} '%'
+        </if>
+        <if test="owner != '' and owner != null">
+            u.name like '%' #{owner} '%'
+
+        </if>
+        <if test="company != '' and company != null">
+            c.company like '%' #{company} '%'
+
+        </if>
+        <if test="mphone != '' and mphone != null">
+            c.mphone like '%' #{mphone} '%'
+
+        </if>
+        <if test="source != '' and source != null">
+            c.source like '%' #{source} '%'
+
+        </if>
+        <if test="clueState != '' and clueState != null">
+            c.state like '%' #{clueState} '%'
+
+        </if>
+        <if test="phone != '' and phone != null">
+            c.phone like '%' #{phone} '%'
+
+        </if>
+
+
+
+
+        </where>
+
+    </select>
+    <select id="getClueByCOndition" resultType="Clue">
+
+        SELECT
+        c.id,
+        c.fullname,
+        u.name as owner,
+        c.company,
+        c.phone,
+        c.mphone,
+        c.source,
+        c.state
+        FROM
+        tbl_clue c
+        JOIN  tbl_user u
+        ON c.owner = u.id
+        <where>
+
+            <if test="fullname != '' and fullname != null">
+
+                c.fullname like '%' #{fullname} '%'
+            </if>
+            <if test="owner != '' and owner != null">
+                and u.name like '%' #{owner} '%'
+
+            </if>
+            <if test="company != '' and company != null">
+                and c.company like '%' #{company} '%'
+
+            </if>
+            <if test="mphone != '' and mphone != null">
+                and  c.mphone like '%' #{mphone} '%'
+
+            </if>
+            <if test="source != '' and source != null">
+                and c.source like '%' #{source} '%'
+
+            </if>
+            <if test="clueState != '' and clueState != null">
+                and  c.state like '%' #{clueState} '%'
+
+            </if>
+            <if test="phone != '' and phone != null">
+                and  c.phone like '%' #{phone} '%'
+
+            </if>
+
+        </where>
+
+            ORDER BY c.createTime DESC
+            LIMIT #{skipPage},#{pageSize};
+
+    </select>
+    <select id="getClueById" resultType="Clue">
+
+        SELECT  * FROM tbl_clue WHERE id = #{id}
+
+    </select>
+    <update id="update">
+
+        update  tbl_clue
+        set
+            fullname = #{fullname},
+            appellation = #{appellation},
+            company = #{company},
+            job = #{job},
+            email = #{email},
+            phone = #{phone},
+            website = #{website},
+            mphone = #{mphone},
+            state = #{state},
+            source = #{source},
+            description = #{description},
+            contactSummary = #{contactSummary},
+            nextContactTime = #{nextContactTime},
+            address = #{address},
+            editTime = #{editTime},
+            editBy = #{editBy}
+
+            WHERE id = #{id};
+
+
+
+
+
+
+    </update>
+    <delete id="delete">
+        delete
+        from tbl_clue
+        WHERE id in
+        <foreach collection="array" item="deleteID" open="(" close=")" separator="," >
+            #{deleteID}
+        </foreach>
+    </delete>
+    <select id="getClueByIdForDetail" resultType="Clue">
+        SELECT
+            cc.id,
+            cc.fullname,
+            cc.appellation,
+            u.name as owner,
+            cc.company,
+            cc.job,
+            cc.email,
+            cc.phone,
+            cc.website,
+            cc.mphone,
+            cc.state,
+            cc.source,
+            cc.createBy,
+            cc.createTime,
+            cc.editBy,
+            cc.editTime,
+            cc.description,
+            cc.contactSummary,
+            cc.nextContactTime,
+            cc.address
+        FROM  tbl_clue cc
+        JOIN  tbl_user u
+        ON cc.owner = u.id
+        WHERE cc.id = #{id};
+    </select>
 </mapper>
 
 

@@ -18,4 +18,12 @@ public interface ClueService {
     boolean save(Clue clue);
 
     Map<String, Object> pageList(Map<String, Object> map);
+
+    Map<String ,Object> getUserListAndClue(String id);
+
+    boolean update(Clue clue);
+
+    boolean delete(String[] deleteIds);
+
+    Clue getClueById(String id);
 }

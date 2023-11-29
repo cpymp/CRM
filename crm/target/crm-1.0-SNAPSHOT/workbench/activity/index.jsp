@@ -177,6 +177,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 		$("#deleteButton").click(function (){
 			var $ordinarySelect = $("input[name=ordinary-select]:checked");
+			alert($ordinarySelect.length);
 			if ($ordinarySelect.length==0){
 				alert("请选择需要删除的记录。")
 			}else {

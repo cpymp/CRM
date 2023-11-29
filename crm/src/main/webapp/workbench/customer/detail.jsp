@@ -472,7 +472,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
                             </div>
                             <label for="edit-customerName" class="col-sm-2 control-label">名称<span style="font-size: 15px; color: red;">*</span></label>
                             <div class="col-sm-10" style="width: 300px;">
-                                <input type="text" class="form-control" id="edit-customerName" value="动力节点">
+                                <input type="text" class="form-control" id="edit-customerName" value="啊哈哈">
                             </div>
                         </div>
 
@@ -621,7 +621,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <%--			<img title="zhangsan" src="image/user-thumbnail.png" style="width: 30px; height:30px;">--%>
 <%--			<div style="position: relative; top: -40px; left: 40px;" >--%>
 <%--				<h5>哎呦！</h5>--%>
-<%--				<font color="gray">联系人</font> <font color="gray">-</font> <b>李四先生-北京动力节点</b> <small style="color: gray;"> 2017-01-22 10:10:10 由zhangsan</small>--%>
+<%--				<font color="gray">联系人</font> <font color="gray">-</font> <b>李四先生-啊哈哈</b> <small style="color: gray;"> 2017-01-22 10:10:10 由zhangsan</small>--%>
 <%--				<div style="position: relative; left: 500px; top: -30px; height: 30px; width: 100px; display: none;">--%>
 <%--					<a class="myHref" href="javascript:void(0);"><span class="glyphicon glyphicon-edit" style="font-size: 20px; color: #E6E6E6;"></span></a>--%>
 <%--					&nbsp;&nbsp;&nbsp;&nbsp;--%>
@@ -635,7 +635,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <%--			<img title="${customer.name}" src="image/user-thumbnail.png" style="width: 30px; height:30px;">--%>
 <%--			<div style="position: relative; top: -40px; left: 40px;" >--%>
 <%--				<h5>呵呵！</h5>--%>
-<%--				<font color="gray">联系人</font> <font color="gray">-</font> <b>李四先生-北京动力节点</b> <small style="color: gray;"> 2017-01-22 10:20:10 由zhangsan</small>--%>
+<%--				<font color="gray">联系人</font> <font color="gray">-</font> <b>李四先生-啊哈哈</b> <small style="color: gray;"> 2017-01-22 10:20:10 由zhangsan</small>--%>
 <%--				<div style="position: relative; left: 500px; top: -30px; height: 30px; width: 100px; display: none;">--%>
 <%--					<a class="myHref" href="javascript:void(0);"><span class="glyphicon glyphicon-edit" style="font-size: 20px; color: #E6E6E6;"></span></a>--%>
 <%--					&nbsp;&nbsp;&nbsp;&nbsp;--%>
@@ -676,7 +676,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					</thead>
 					<tbody>
 						<tr>
-							<td><a href="transaction/detail.html" style="text-decoration: none;">动力节点-交易01</a></td>
+							<td><a href="transaction/detail.html" style="text-decoration: none;">啊哈哈-交易01</a></td>
 							<td>5,000</td>
 							<td>谈判/复审</td>
 							<td>90</td>
