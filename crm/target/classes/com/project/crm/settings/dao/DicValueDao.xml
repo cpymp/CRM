@@ -6,7 +6,7 @@
 <mapper namespace="com.project.crm.settings.dao.DicValueDao">
 
 	<select id="getListByCode" resultType="DicValue">
-        select * from tbl_dic_value where typecode = #{code};
+        select * from tbl_dic_value where typecode = #{code} ORDER BY orderNo ASC
     </select>
 	
 </mapper>

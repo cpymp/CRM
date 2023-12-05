@@ -5,6 +5,41 @@
 
 <mapper namespace="com.project.crm.workbench.dao.ActivityDao">
 
+    <select id="getActivityByNameAndNotBount" resultType="Activity">
+
+        select
+            a.id,
+            a.name,
+            a.startDate,
+            a.endDate,
+            u.name as owner
+        FROM tbl_activity a
+        JOIN tbl_user u
+        ON a.owner = u.id
+        WHERE a.name like '%' #{activityName} '%' and a.id not in (
+
+                SELECT activityId
+                FROM tbl_clue_activity_relation
+                WHERE clueId = #{clueId}
+        )
+
+    </select>
+    <select id="getActivityByClueId" resultType="Activity">
+
+        select
+            car.id as id,
+            a.name,
+            a.startDate,
+            a.endDate,
+            u.name as owner
+        FROM tbl_activity a
+        JOIN tbl_clue_activity_relation car
+        ON car.activityID = a.id
+        JOIN tbl_user u
+        ON  a.owner = u.id
+        where car.clueId = #{id};
+
+    </select>
     <select id="detail" resultType="Activity">
 
     select
@@ -26,7 +61,24 @@
     where a.id = #{id}
 
     </select>
-
+    <select id="getActivityByName" resultType="Activity">
+        select
+           a.id,
+           u.name as owner,
+           a.name,
+           a.startDate,
+           a.endDate,
+           a.cost,
+           a.description,
+           a.createTime,
+           a.createBy,
+           a.editTime,
+           a.editBy
+        FROM tbl_activity a
+        JOIN tbl_user u
+        ON a.owner = u.id
+        WHERE a.name like '%' #{activityName} '%'
+    </select>
     <update id="update">
     update  tbl_activity
     set

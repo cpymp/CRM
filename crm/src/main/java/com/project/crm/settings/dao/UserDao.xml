@@ -26,8 +26,102 @@
         select name  from tbl_user where id = #{owner}
 
     </select>
-	
-	
+
+    <select id="getUserByCondition" resultType="User">
+
+    select  * from tbl_user
+    <where>
+            <if test="userName!=null and userName !=''">
+            name like '%' #{userName} '%'
+            </if>
+        <if test="lockState!=null and lockState !=''">
+            and lockState  =  #{lockState}
+        </if>
+        <if test="expireStartTime!=null and expireStartTime !=''  ">
+            and expireTime &gt; #{expireStartTime}
+        </if>
+        <if test="expireEndTime!=null and expireEndTime !=''">
+            and expireTime &lt; #{expireEndTime}
+        </if>
+
+    </where>
+        ORDER BY createTime DESC
+        limit #{skipNum},#{pageSize}
+
+
+
+    </select>
+	<select id="getTotalByCondition" resultType="int">
+        select  count(*) from tbl_user
+        <where>
+            <if test="userName!=null and userName !=''">
+                name like '%' #{userName} '%'
+            </if>
+            <if test="lockState!=null and lockState !=''">
+                and lockState  =  #{lockState}
+            </if>
+            <if test="expireStartTime!=null and expireStartTime !=''  ">
+                and expireTime &gt; #{expireStartTime}
+            </if>
+            <if test="expireEndTime!=null and expireEndTime !=''">
+                and expireTime &lt; #{expireEndTime}
+            </if>
+
+        </where>
+
+    </select>
+	<insert id="save">
+        insert into
+        tbl_user(
+            id,
+            loginAct,
+            name,
+            loginPwd,
+            email,
+            expireTime,
+            lockState,
+            deptno,
+            allowIps,
+            createTime,
+            createBy,
+            editTime,
+            editBy
+        )
+        values(
+               #{id},
+               #{loginAct},
+               #{name},
+               #{loginPwd},
+               #{email},
+               #{expireTime},
+               #{lockState},
+               #{deptno},
+               #{allowIps},
+               #{createTime},
+               #{createBy},
+               #{editTime},
+               #{editBy}
+              )
+
+    </insert>
+    <select id="repeat" resultType="int">
+        select count(*) from
+                            tbl_user
+        where loginAct = #{loginActNo}
+    </select>
+    <delete id="deleteById">
+        delete  from
+                    tbl_user
+        where id in
+        <foreach collection="array" item="id" open="(" close=")" separator=",">
+
+        #{id}
+
+        </foreach>
+    </delete>
+    <select id="getUserById" resultType="User">
+        select  * from tbl_user where id = #{id}
+    </select>
 </mapper>
 
 

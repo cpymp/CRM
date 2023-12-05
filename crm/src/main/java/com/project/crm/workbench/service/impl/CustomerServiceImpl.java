@@ -33,6 +33,15 @@ public class CustomerServiceImpl implements CustomerService {
     CustomerRemarkDao customerRemarkDao = SqlSessionUtil.getSqlSession().getMapper(CustomerRemarkDao.class);
 
     @Override
+    public List<String> getCustomerName(String name) {
+     List<String >  customerNameList = customerDao.getCustomerNameList(name);
+
+
+
+        return customerNameList;
+    }
+
+    @Override
     public boolean save(Customer customer) {
         boolean isSave = false;
         int isSaveCount = customerDao.save(customer);

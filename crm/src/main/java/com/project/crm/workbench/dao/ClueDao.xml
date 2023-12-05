@@ -4,6 +4,11 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.crm.workbench.dao.ClueDao">
+    <delete id="deleteById">
+        delete from
+                   tbl_clue
+        where id=#{clueId}
+    </delete>
 	<insert id="save">
 
         insert into tbl_clue
@@ -211,6 +216,11 @@
         ON cc.owner = u.id
         WHERE cc.id = #{id};
     </select>
+    <delete id="unBound">
+            delete from
+            tbl_clue_activity_relation
+            where id = #{carId}
+    </delete>
 </mapper>
 
 

@@ -49,6 +49,12 @@
   <servlet-mapping>
     <servlet-name>UserContorller</servlet-name>
     <url-pattern>/settings/user/login.do</url-pattern>
+    <url-pattern>/settings/qx/user/pageList.do</url-pattern>
+    <url-pattern>/settings/qx/user/save.do</url-pattern>
+    <url-pattern>/settings/qx/user/isRepeat.do</url-pattern>
+    <url-pattern>/settings/qx/user/deleteUser.do</url-pattern>
+    <url-pattern>/settings/qx/index.do</url-pattern>
+
   </servlet-mapping>
 
   <!--   市场活动控制器-->
@@ -60,6 +66,26 @@
     <servlet-name>ActivityController</servlet-name>
     <url-pattern>/workbench/activity/getUserList.do</url-pattern>
   </servlet-mapping>
+
+
+
+  <!--   联系人活动控制器-->
+  <servlet>
+    <servlet-name>ContactsController</servlet-name>
+    <servlet-class>com.project.crm.workbench.web.controller.ContactsController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ContactsController</servlet-name>
+    <url-pattern>/workbench/contacts/pageList.do</url-pattern>
+    <url-pattern>/workbench/contacts/getUserList.do</url-pattern>
+    <url-pattern>/workbench/contacts/save.do</url-pattern>
+    <url-pattern>/workbench/contacts/edit.do</url-pattern>
+    <url-pattern>/workbench/contacts/getUserListAndContactsInfo.do</url-pattern>
+    <url-pattern>/workbench/contacts/update.do</url-pattern>
+    <url-pattern>/workbench/contacts/delete.do</url-pattern>
+  </servlet-mapping>
+
+
   <!--   市场活动添加控制器-->
   <servlet-mapping>
     <servlet-name>ActivityController</servlet-name>
@@ -90,6 +116,12 @@
     <url-pattern>/workbench/clue/update.do</url-pattern>
     <url-pattern>/workbench/clue/delete.do</url-pattern>
     <url-pattern>/workbench/clue/detail.do</url-pattern>
+    <url-pattern>/workbench/clue/getActivityByClueId.do</url-pattern>
+    <url-pattern>/workbench/clue/deleteActivityByCARId.do</url-pattern>
+    <url-pattern>/workbench/clue/getActivityByNameAndNotBount.do</url-pattern>
+    <url-pattern>/workbench/clue/bound.do</url-pattern>
+    <url-pattern>/workbench/clue/getActivityByName.do</url-pattern>
+    <url-pattern>/workbench/clue/convert.do</url-pattern>
     <url-pattern>/workbench/clue/xxx.do</url-pattern>
   </servlet-mapping>
 
@@ -116,6 +148,35 @@
     <url-pattern>/workbench/customer/deleteRemarkById.do</url-pattern>
     <url-pattern>/workbench/customer/xxx.do</url-pattern>
   </servlet-mapping>
+
+
+  <!--   交易控制器-->
+  <servlet>
+    <servlet-name>TranController</servlet-name>
+    <servlet-class>com.project.crm.workbench.web.controller.TranController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TranController</servlet-name>
+    <url-pattern>/workbench/transaction/add.do</url-pattern>
+    <url-pattern>/workbench/transaction/showActivityList.do</url-pattern>
+    <url-pattern>/workbench/transaction/serchActivityList.do</url-pattern>
+    <url-pattern>/workbench/transaction/getCustomerName.do</url-pattern>
+    <url-pattern>/workbench/transaction/getContactsName.do</url-pattern>
+    <url-pattern>/workbench/transaction/save.do</url-pattern>
+    <url-pattern>/workbench/transaction/pageList.do</url-pattern>
+    <url-pattern>/workbench/transaction/detail.do</url-pattern>
+    <url-pattern>/workbench/transaction/getTranHistoryList.do</url-pattern>
+    <url-pattern>/workbench/transaction/edit.do</url-pattern>
+    <url-pattern>/workbench/transaction/getTran.do</url-pattern>
+    <url-pattern>/workbench/transaction/getUserList.do</url-pattern>
+    <url-pattern>/workbench/transaction/delete.do</url-pattern>
+    <url-pattern>/workbench/transaction/changeStage.do</url-pattern>
+    <url-pattern>/workbench/transaction/getCharts.do</url-pattern>
+
+  </servlet-mapping>
+
+
+
 
 </web-app>
 

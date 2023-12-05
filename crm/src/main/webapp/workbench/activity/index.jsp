@@ -530,13 +530,13 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<label for="create-startTime" class="col-sm-2 control-label">开始日期</label>
 
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control time" id="create-startDate" readonly >
+								<input type="text" class="form-control time" id="create-startDate"   >
 							</div>
 
 							<label for="create-endTime" class="col-sm-2 control-label">结束日期</label>
 
 							<div class="col-sm-10" style="width: 300px;">
-								<input type="text" class="form-control time" id="create-endDate" readonly >
+								<input type="text" class="form-control time" id="create-endDate"   >
 							</div>
 						</div>
                         <div class="form-group">
@@ -644,7 +644,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 	<div>
 		<div style="position: relative; left: 10px; top: -10px;">
 			<div class="page-header">
-				<h3>市场活动列表123123</h3>
+				<h3>市场活动列表</h3>
 			</div>
 		</div>
 	</div>

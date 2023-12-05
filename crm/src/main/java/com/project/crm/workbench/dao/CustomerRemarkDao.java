@@ -13,4 +13,6 @@ public interface CustomerRemarkDao {
     int updateRemark(CustomerRemark customerRemark);
 
     int deleteRemarkById(String id);
+
+    int save(CustomerRemark customerRemark);
 }

@@ -1,7 +1,10 @@
 package com.project.crm.workbench.service;
 
+import com.project.crm.workbench.domain.Activity;
 import com.project.crm.workbench.domain.Clue;
+import com.project.crm.workbench.domain.Tran;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -26,4 +29,13 @@ public interface ClueService {
     boolean delete(String[] deleteIds);
 
     Clue getClueById(String id);
+
+    boolean unBound(String carId);
+
+    boolean bound(Map<String, Object> map);
+
+    boolean convert(String id, String createBy, Tran t);
+
+//    List<Activity> getActivityByNameAndNotBount(Map<String, String> map);
+
 }

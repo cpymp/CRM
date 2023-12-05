@@ -144,8 +144,6 @@ public class ActivityController extends HttpServlet {
          //转发的路径是内部路径，前面不需要项目名，
         //只有转发才能从reques域中取值  重定向不行
          request.getRequestDispatcher("/workbench/activity/detail.jsp") .forward(request,response);
-
-
     }
 
     private void update(HttpServletRequest request, HttpServletResponse response) {

@@ -542,10 +542,13 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		<div class="page-header">
 			<h3>客户-${customer.name} <small><a href="http://www.baidu.com" target="_blank">${customer.website}</a></small></h3>
 		</div>
+<%--
 		<div style="position: relative; height: 50px; width: 500px;  top: -72px; left: 700px;">
+
 			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#editCustomerModal"><span class="glyphicon glyphicon-edit"></span> 编辑</button>
 			<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
 		</div>
+		--%>
 	</div>
 	
 	<!-- 详细信息 -->
@@ -643,7 +646,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 <%--				</div>--%>
 <%--			</div>--%>
 <%--		</div>--%>
-		
+<%--
 		<div id="remarkDiv" style="background-color: #E6E6E6; width: 870px; height: 90px;">
 			<form role="form" style="position: relative;top: 10px; left: 10px;">
 				<textarea id="remark" class="form-control" style="width: 850px; resize : none;" rows="2"  placeholder="添加备注..."></textarea>
@@ -654,7 +657,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			</form>
 		</div>
 	</div>
-	
+
 	<!-- 交易 -->
 	<div>
 		<div style="position: relative; top: 20px; left: 40px;">
@@ -693,8 +696,8 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			</div>
 		</div>
 	</div>
-	
-	<!-- 联系人 -->
+	--%>
+	<!-- 联系人
 	<div>
 		<div style="position: relative; top: 20px; left: 40px;">
 			<div class="page-header">
@@ -726,7 +729,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 			</div>
 		</div>
 	</div>
-	
+	-->
 	<div style="height: 200px;"></div>
 </body>
 </html>

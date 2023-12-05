@@ -73,5 +73,51 @@ public class UserServiceImpl implements UserService {
 
         return userList;
     }
+
+    @Override
+    public Map<String, Object> pageList(Map<String, Object> map) {
+        Map<String, Object> rMap = new HashMap<String, Object>();
+        List<User> userList = userDao.getUserByCondition(map);
+        int total =  userDao.getTotalByCondition(map);
+        rMap.put("userList",userList);
+        rMap.put("total",total);
+        return rMap;
+    }
+
+    @Override
+    public boolean save(User user) {
+        boolean isSave = false;
+        int count = userDao.save(user);
+        if (count > 0 ){
+            isSave = true;
+        }
+        return isSave;
+    }
+
+    @Override
+    public User getUserById(String id) {
+        User user = userDao.getUserById(id);
+        return user;
+    }
+
+    @Override
+    public boolean deleteById(String[] deleteIds) {
+        boolean isDelete = false;
+        int count = userDao.deleteById(deleteIds);
+        if (count == deleteIds.length){
+            isDelete = true;
+        }
+        return isDelete;
+    }
+
+    @Override
+    public boolean isRepeat(String loginActNo) {
+        boolean isRepeat = true;
+        int count = userDao.repeat(loginActNo);
+        if (count > 0 ){
+            isRepeat = false;
+        }
+        return isRepeat;
+    }
 }
 

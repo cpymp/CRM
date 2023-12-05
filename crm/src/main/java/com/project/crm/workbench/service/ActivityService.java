@@ -40,4 +40,10 @@ public interface ActivityService {
     boolean saveRemark(ActivityRemark activityRemark);
 
     boolean updateRemark(ActivityRemark activityRemark);
+
+    List<Activity> getActivityByClueId(String clueId);
+
+    List<Activity> getActivityByNameAndNotBount(Map<String, String> map);
+
+    List<Activity> getActivityByName(String activityName);
 }

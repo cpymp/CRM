@@ -3,16 +3,25 @@ package com.project.crm.workbench.domain;
 public class Tran {
 	
 	private String id;
-	private String owner;
+	private String owner; //------------------------------------外键 关联tbl_user
 	private String money;	//交易金额
 	private String name;	//交易名称
 	private String expectedDate;	//预计成交日期
-	private String customerId;
+
+	public String getPossibility() {
+		return possibility;
+	}
+
+	public void setPossibility(String possibility) {
+		this.possibility = possibility;
+	}
+
+	private String customerId; //------------------------------------ 关联tbl_customer
 	private String stage;	//交易阶段
 	private String type;	//交易类型
 	private String source;	//交易来源
-	private String activityId;
-	private String contactsId;
+	private String activityId; //------------------------------------ 关联 tbl_activity
+	private String contactsId; //------------------------------------ 关联 tbl_contactsId
 	private String createBy;
 	private String createTime;
 	private String editBy;
@@ -129,8 +138,29 @@ public class Tran {
 	public void setNextContactTime(String nextContactTime) {
 		this.nextContactTime = nextContactTime;
 	}
-	
-	
 
-	
+String possibility ;
+	@Override
+	public String toString() {
+		return "Tran{" +
+				"id='" + id + '\'' +
+				", owner='" + owner + '\'' +
+				", money='" + money + '\'' +
+				", name='" + name + '\'' +
+				", expectedDate='" + expectedDate + '\'' +
+				", customerId='" + customerId + '\'' +
+				", stage='" + stage + '\'' +
+				", type='" + type + '\'' +
+				", source='" + source + '\'' +
+				", activityId='" + activityId + '\'' +
+				", contactsId='" + contactsId + '\'' +
+				", createBy='" + createBy + '\'' +
+				", createTime='" + createTime + '\'' +
+				", editBy='" + editBy + '\'' +
+				", editTime='" + editTime + '\'' +
+				", description='" + description + '\'' +
+				", contactSummary='" + contactSummary + '\'' +
+				", nextContactTime='" + nextContactTime + '\'' +
+				'}';
+	}
 }

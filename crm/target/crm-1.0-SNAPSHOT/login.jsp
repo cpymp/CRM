@@ -104,7 +104,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 							<span id="errorMsg" style="color: red"></span>
 						
 					</div>
-					<button type="button"  id="submittButton" class="btn btn-primary btn-lg btn-block"  style="width: 350px; position: relative;top: 45px;">登录123123</button>
+					<button type="button"  id="submittButton" class="btn btn-primary btn-lg btn-block"  style="width: 350px; position: relative;top: 45px;">登录</button>
 
 					<%--		在form表单中，button即使不写submit，类型也默认为submis！！！
 								若不想提交表单，则使用button覆盖submit即可

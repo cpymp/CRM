@@ -44,7 +44,15 @@ public class Test1 {
         System.out.println(result);
 
     }
+    @Test
+    public void test9(){
+        System.out.println(DateTimeUtil.getSysTime());
+        String date = DateTimeUtil.getSysTime();
+        String time = date.substring(11,date.length());
+        System.out.println(time);
 
+
+    }
     /*
     判断锁定状态
      */

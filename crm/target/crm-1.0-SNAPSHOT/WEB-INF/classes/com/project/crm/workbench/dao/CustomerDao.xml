@@ -5,7 +5,11 @@
 
 <mapper namespace="com.project.crm.workbench.dao.CustomerDao">
 
-
+    <select id="getCustomerNameList" resultType="String">
+        SELECT name
+        FROM  tbl_customer
+        WHERE name like '%' #{name} '%'
+    </select>
     <insert id="save">
 
     insert into tbl_customer
@@ -130,6 +134,15 @@
           tbl_customer
           where id = #{id}
 
+    </select>
+    <select id="getCustomerByName" resultType="Customer">
+        select  * from tbl_customer
+        where name = #{company}
+    </select>
+    <select id="getIdByName" resultType="String">
+        select id
+        from tbl_customer
+        where name=#{contactsId}
     </select>
 </mapper>
 

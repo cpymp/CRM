@@ -24,4 +24,17 @@ public interface UserDao {
     List<User> getUserList();
 
     String getUserNameById(String owner);
+
+    List<User> getUserByCondition(Map<String, Object> map);
+
+    int getTotalByCondition(Map<String, Object> map);
+
+    int save(User user);
+
+    int repeat(String loginActNo);
+
+    int deleteById(String[] deleteIds);
+
+    User getUserById(String id);
+
 }

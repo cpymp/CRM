@@ -20,4 +20,12 @@ public interface CustomerDao {
     int delete(List<String> deleteList);
 
     Customer getCustomerById(String id);
+
+    Customer getCustomerByName(String company);
+
+    List<String> getCustomerNameList(String name);
+
+    Customer getCustomerByNamePrecise(String customerName);
+
+    String getIdByName(String contactsId);
 }

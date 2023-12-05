@@ -1,6 +1,10 @@
+<%@ page import="java.util.Set" %>
+<%@ page import="java.util.Map" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%
 String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + request.getContextPath() + "/";
+    Map<String,String> pMap = (Map<String, String>) application.getAttribute("pMap");
+    Set<String> set =  pMap.keySet();
 %>
 <!DOCTYPE html>
 <html>
@@ -381,10 +385,12 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 		<div class="page-header">
 			<h3>市场活动-${activity.name} <small>${activity.startDate} ~ ${activity.endDate}</small></h3>
 		</div>
+<%--
 		<div style="position: relative; height: 50px; width: 250px;  top: -72px; left: 700px;">
 			<button type="button" class="btn btn-default" data-toggle="modal" data-target="#editActivityModal"><span class="glyphicon glyphicon-edit"></span> 编辑</button>
 			<button type="button" class="btn btn-danger"><span class="glyphicon glyphicon-minus"></span> 删除</button>
 		</div>
+        --%>
 	</div>
 	
 	<!-- 详细信息 -->

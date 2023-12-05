@@ -4,8 +4,224 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.project.crm.workbench.dao.ContactsDao">
-	
-  	
+	<insert id="save">
+
+        insert into tbl_contacts
+        (   id,
+            owner,
+            source,
+            customerId,
+            fullname,
+            appellation,
+            email,
+            mphone,
+            job,
+            birth,
+            createBy,
+            createTime,
+            description,
+            contactSummary,
+            nextContactTime,
+            address
+        )
+        values
+        (
+            #{id},
+            #{owner},
+            #{source},
+            #{customerId},
+            #{fullname},
+            #{appellation},
+            #{email},
+            #{mphone},
+            #{job},
+            #{birth},
+            #{createBy},
+            #{createTime},
+            #{description},
+            #{contactSummary},
+            #{nextContactTime},
+            #{address}
+        )
+
+    </insert>
+  	<select id="getContactsByFullName" resultType="Contacts">
+        select
+            c.id,
+            u.name as owner,
+            c.source,
+            c.customerId,
+            c.fullname,
+            c.appellation,
+            c.email,
+            c.mphone,
+            c.job,
+            c.birth,
+            c.createBy,
+            c.createTime,
+            c.editBy,
+            c.editTime,
+            c.description,
+            c.contactSummary,
+            c.nextContactTime,
+            c.address
+        FROM tbl_contacts c
+        JOIN tbl_user u
+        ON c.owner = u.id
+
+        WHERE fullname like '%' #{name} '%'
+
+    </select>
+    <select id="getIdByName" resultType="String">
+        select id from tbl_contacts
+        where fullname=#{contactsId}
+    </select>
+    <select id="getContactsByCondition" resultType="Contacts">
+        select
+            cs.id,
+            u.name as owner,
+            cs.source,
+            cr.name as customerId,
+            cs.fullname,
+            cs.appellation,
+            cs.email,
+            cs.mphone,
+            cs.job,
+            cs.birth,
+            cs.createBy,
+            cs.createTime,
+            cs.editBy,
+            cs.editTime,
+            cs.description,
+            cs.contactSummary,
+            cs.nextContactTime,
+            cs.address
+                from tbl_contacts cs
+                JOIN tbl_user u
+                    ON cs.owner = u.id
+                left join tbl_customer cr
+                ON cs.customerId = cr.id
+        <where>
+            <if test=" name != '' and name!= null">
+                cs.fullname like '%' #{name} '%'
+            </if>
+            <if test=" owner != '' and owner != null">
+                and u.name like '%' #{owner} '%'
+            </if>
+            <if test=" customerName != '' and customerName != null">
+                and cr.name like '%' #{customerName} '%'
+            </if>
+            <if test=" birth != '' and birth != null">
+                and cs.birth like '%' #{birth} '%'
+            </if>
+            <if test="clueSource != '' and clueSource != null">
+                and cs.source like '%' #{clueSource} '%'
+            </if>
+        </where>
+            ORDER BY cs.createTime DESC
+            LIMIT #{skipNum},#{pageSize}
+
+
+
+
+
+
+    </select>
+    <select id="getTotalByCondition" resultType="int">
+        select
+
+            count(*)
+                from tbl_contacts cs
+                JOIN tbl_user u
+                    ON cs.owner = u.id
+                left join tbl_customer cr
+                ON cs.customerId = cr.id
+        <where>
+            <if test=" name != '' and name!= null">
+                cs.fullname like '%' #{name} '%'
+            </if>
+            <if test=" owner != '' and owner != null">
+                and u.name like '%' #{owner} '%'
+            </if>
+            <if test=" customerName != '' and customerName != null">
+                and cr.name like '%' #{customerName} '%'
+            </if>
+            <if test=" birth != '' and birth != null">
+                and cs.birth like '%' #{birth} '%'
+            </if>
+            <if test="clueSource != '' and clueSource != null">
+                and cs.source like '%' #{clueSource} '%'
+            </if>
+        </where>
+
+
+
+
+
+
+
+    </select>
+    <select id="getContactById" resultType="Contacts">
+        select
+            c.id,
+            c.owner,
+            c.source,
+            cr.name as customerId,
+            c.fullname,
+            c.appellation,
+            c.email,
+            c.mphone,
+            c.job,
+            c.birth,
+            c.createBy,
+            c.createTime,
+            c.editBy,
+            c.editTime,
+            c.description,
+            c.contactSummary,
+            c.nextContactTime,
+            c.address
+        FROM tbl_contacts c
+                 JOIN tbl_user u
+                      ON c.owner = u.id
+        LEFT JOIN tbl_customer cr
+        ON c.customerId = cr.id
+
+        WHERE c.id = #{id}
+    </select>
+    <update id="update">
+        update tbl_contacts
+        set
+            owner = #{owner},
+            source = #{source},
+            customerId = #{customerId},
+            fullname = #{fullname},
+            appellation = #{appellation},
+            email = #{email},
+            mphone = #{mphone},
+            job = #{job},
+            birth = #{birth},
+            editBy = #{editBy},
+            editTime = #{editTime},
+            description = #{description},
+            contactSummary = #{contactSummary},
+            nextContactTime = #{nextContactTime},
+            address = #{address}
+            where id = #{id}
+
+
+    </update>
+    <delete id="delete">
+
+        delete
+        from tbl_contacts
+        where id in
+        <foreach collection="list" item="dIds" open="(" close=")" separator=",">
+            #{dIds}
+        </foreach>
+
+    </delete>
+
 </mapper>
 
 

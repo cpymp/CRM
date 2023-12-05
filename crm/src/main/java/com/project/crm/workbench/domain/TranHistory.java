@@ -1,7 +1,15 @@
 package com.project.crm.workbench.domain;
 
 public class TranHistory {
-	
+	public String getPossibility() {
+		return possibility;
+	}
+
+	public void setPossibility(String possibility) {
+		this.possibility = possibility;
+	}
+
+	private String possibility;
 	private String id;
 	private String stage;
 	private String money;

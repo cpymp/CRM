@@ -21,4 +21,8 @@ public interface ClueDao {
     int delete(String[] deleteIds);
 
     Clue getClueByIdForDetail(String id);
+
+    int unBound(String carId);
+
+    int deleteById(String clueId);
 }

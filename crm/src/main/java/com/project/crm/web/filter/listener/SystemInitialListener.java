@@ -8,9 +8,7 @@ import com.project.crm.utils.ServiceFactory;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * ClassName: SystemInitialListener
@@ -94,6 +92,38 @@ public class SystemInitialListener implements ServletContextListener {
        }
         System.out.println("服务器处理数据字典缓存结束");
 
+        /*
+            处理完数据字典后，处理stageTopossivility.properties文件
+            步骤：
+                》解析该文件，将该属性文件中的键值对关系处理成java中的键值对关系，既map
+                Map<String,String>  key:阶段      value:可能性  > possbilityMap
+                                    key:stage      value:possibility
 
+                Map<String,String> possbilityMap = new HashMap<String,String>
+                possibilityMap.put("01资质省察",10);
+                possibilityMap.put("02需求分析",25);
+                possibilityMap.put("07",100);
+
+                》将possbilityMap保存到上下文域对象中
+                application.setAttribute("pMap",possbilityMap);
+
+         */
+                ResourceBundle rb = ResourceBundle.getBundle("Stage2Possibility");
+                //枚举-- 不胜枚举 -- 数量少的，可以一一列举出来的 。
+                //使用范围：对象、值已经创建好了，不允许创建其他的，例如，月份(12个值)、星期(7个值)、交通灯(红黄绿灯3个值)
+                //iterator 是所有的遍历工具中，速度最快的。
+
+                Enumeration<String> keys = rb.getKeys();
+                Map<String,String> possbilityMap = new HashMap<String,String>();
+
+                  while (keys.hasMoreElements()){
+                    //阶段
+                    String key = keys.nextElement();
+                    //可能性
+                    String value = rb.getString(key);
+
+                      possbilityMap.put(key,value);
+                }
+            application.setAttribute("pMap",possbilityMap);
     }
 }

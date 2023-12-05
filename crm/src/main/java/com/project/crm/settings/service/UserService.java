@@ -4,6 +4,7 @@ import com.project.crm.exception.LoginException;
 import com.project.crm.settings.domain.User;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * ClassName: UserService
@@ -20,4 +21,14 @@ public interface UserService {
     User login(String loginAccount, String loginPassword, String loginIp) throws LoginException;
 
     List<User> getUserList();
+
+    Map<String, Object> pageList(Map<String, Object> map);
+
+    boolean save(User user);
+
+    boolean isRepeat(String loginActNo);
+
+    boolean deleteById(String[] deleteIds);
+
+    User getUserById(String id);
 }

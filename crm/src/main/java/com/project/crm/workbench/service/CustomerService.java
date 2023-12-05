@@ -39,4 +39,6 @@ public interface CustomerService {
     boolean updateRemark(CustomerRemark customerRemark);
 
     boolean deleteRemarkById(String id);
+
+    List<String> getCustomerName(String name);
 }

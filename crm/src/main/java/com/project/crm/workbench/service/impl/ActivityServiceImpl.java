@@ -80,6 +80,34 @@ public class ActivityServiceImpl implements ActivityService {
     }
 
     @Override
+    public List<Activity> getActivityByClueId(String clueId) {
+
+        List<Activity> list = activityDao.getActivityByClueId(clueId);
+        return list;
+    }
+
+    @Override
+    public List<Activity> getActivityByName(String activityName) {
+        List<Activity> list = activityDao.getActivityByName(activityName);
+
+
+        return list;
+    }
+
+    @Override
+    public List<Activity> getActivityByNameAndNotBount(Map<String, String> map) {
+
+        List<Activity> list = activityDao.getActivityByNameAndNotBount(map);
+
+
+
+
+
+
+        return list;
+    }
+
+    @Override
     public boolean deleteRemarkById(String deleteId) {
         boolean isDelete = false;
         int isDeleteCount =  activityRemarkDao.deleteById(deleteId);
