@@ -25,6 +25,10 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 </head>
 <body>
+<!-- 返回按钮 -->
+<div style="position: relative; top: 35px; left: 10px;">
+	<a href="javascript:void(0);" onclick="window.history.back();"><span class="glyphicon glyphicon-arrow-left" style="font-size: 20px; color: #DDDDDD"></span></a>
+</div>
 <script>
 	var  json = {
 		<%
@@ -46,7 +50,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 		$("#saveButton").click(function (){
 
-			 alert($("#edit-contactsName").val());
 			$.ajax({
 				url:"workbench/transaction/edit.do",
 				data:{
@@ -70,11 +73,12 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 				dataType:"json",
 				type:"post",
 				success:function (data){
+					window.location.href='workbench/transaction/index.jsp';
+
 
 					if (data.success){
-
+						alert("修改成功");
 						pageList(1,5);
-
 
 					}
 
@@ -278,7 +282,7 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 					</table>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+					<button type="button"  href="javascript:void(0);" onclick="window.history.back();" class="btn btn-default" data-dismiss="modal">取消</button>
 					<button type="button" class="btn btn-primary" data-dismiss="modal" id="submitActivityButton">提交</button>
 				</div>
 			</div>

@@ -98,7 +98,16 @@ public class TranController extends HttpServlet {
         }else if ("/workbench/transaction/getCharts.do".equals(path)) {
             getCharts(request,response);
 
+        }else if ("/workbench/transaction/skip.do".equals(path)) {
+            skip(request,response);
+
         }
+    }
+
+    private void skip(HttpServletRequest request, HttpServletResponse response) throws IOException {
+
+        response.sendRedirect(request.getContextPath()+"/workbench/transaction/index.jsp");
+
     }
 
     private void getCharts(HttpServletRequest request, HttpServletResponse response) {
@@ -203,7 +212,11 @@ public class TranController extends HttpServlet {
         System.out.println(tran);
         boolean isUpdate = tranService.update(tran);
         PrintJson.printJsonFlag(response,isUpdate);
-
+//       if (isUpdate){
+//        response.sendRedirect(request.getContextPath()+"/workbench/transaction/index.jsp");
+//
+//       }
+//        request.getRequestDispatcher("workbench/transaction/index.jsp").forward(request,response);
 
 
     }

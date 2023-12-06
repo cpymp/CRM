@@ -178,7 +178,7 @@ public class ClueServiceImpl implements ClueService {
                 //创建交易  tran 已经封装了重要的基本信息
                 tran.setSource(clue.getSource());
                 tran.setNextContactTime(clue.getNextContactTime());
-                tran.setCustomerId(clue.getId());
+                tran.setCustomerId(customer.getId());
                 tran.setOwner(clue.getOwner());
                 tran.setContactsId(contacts.getId());
                 tran.setDescription(clue.getDescription());

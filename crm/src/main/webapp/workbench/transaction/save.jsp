@@ -202,8 +202,6 @@ String basePath = request.getScheme() + "://" + request.getServerName() + ":" + 
 
 			$("#saveButton").click(function (){
 
-
-
 				 $("#tranForm").submit();
 			})
 		})
